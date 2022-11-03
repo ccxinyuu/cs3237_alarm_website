@@ -21,7 +21,7 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            my_group = Group.objects.get(name='AlarmGroup') 
+            my_group = Group.objects.getor_create(name='AlarmGroup') 
             my_group.user_set.add(user)
             login(request, user)
             return redirect('/alarms/alarms')
