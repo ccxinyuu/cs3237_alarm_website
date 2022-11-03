@@ -24,6 +24,7 @@ refreshTimes = () => {
 checkAlarm = (alarmTime, sound, popupIndex) => {
     if (moment(alarmTime).isSame(moment(), 'second')) {
         playAlarm(sound);
+        sendSignal(1); 
         displayPopup(popupIndex);
     }
 }
@@ -60,3 +61,13 @@ formatDateDisplay = (dateDisplay) => {
 }
 
 setInterval(refreshTimes, 1000);
+
+sendSignal = (signal) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "controller/send/", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        signal: signal
+    }));
+    console.log(`hey im herre`);
+}

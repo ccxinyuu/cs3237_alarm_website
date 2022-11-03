@@ -17,7 +17,7 @@
     <div class="container-fluid mx-auto">
         {% if user.is_authenticated %} {% block sidebar %}
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-            <a class="navbar-brand" href="{% url 'home' %}">Alarmous</a>
+            <a class="navbar-brand" href="{% url 'home' %}">AlarmU</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,6 +26,9 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'alarm_create' %}">Add Alarm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'alarm_tone_change' %}">Change Alarm Tone</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-sm-0">
