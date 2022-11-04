@@ -22,12 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 print(BASE_DIR)
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
 try:
     SECRET_KEY = os.environ['secret']
 except KeyError:
     with open(f'{BASE_DIR}\\secretkey.txt') as f:
             SECRET_KEY = f.read().strip()
-
+            
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -169,5 +170,5 @@ MQTT_KEEPALIVE = 60
 MQTT_USER = 'cs3237'
 MQTT_PASSWORD = 'public'
 
-import django_heroku
-django_heroku.settings(locals())
+import django_on_heroku
+django_on_heroku.settings(locals())
