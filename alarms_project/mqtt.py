@@ -8,6 +8,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe('alarm/alarmtone')
     client.subscribe('alarm/time')
     client.subscribe('alarm/touch')
+    client.subscribe('alarm/quit')
 
 
 def on_message(client, userdata, msg):
@@ -37,9 +38,14 @@ class MQTT:
         self.client.publish('alarm/time', payload=1, qos=0)
     
     def publish_to_alarm_tone(self, alarmtone):
-
         tone_dict = {"Love Story": 0 , "Flower Dance": 1, "River Flows in You":2, "Little Star": 3}
         self.client.publish('alarm/alarmtone', payload=tone_dict[alarmtone],qos=0)
+    
+    def publish_to_sleep_mode(self):
+        self.client.publish('alarm/quit', payload = 1,  qos=0)
+    
+    def publish_to_turn_off_alarm(self):
+        self.client.publish('alarm/touch', payload = 1, qos=0)
 
 client = MQTT()
 

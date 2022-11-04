@@ -18,6 +18,11 @@ from types import SimpleNamespace
 from alarms_project.mqtt import client
 
 # Create your views here.
+
+def go_to_sleep_mode(request):
+    client.publish_to_sleep_mode()
+    return redirect("/alarms/alarms")
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -106,6 +111,7 @@ class AlarmDelete(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
     permission_required = 'alarm.edit_alarm'
     success_url = '/alarms/alarms'
     def get(self, *args, **kwargs):
+        client.publish_to_turn_off_alarm()
         return self.post(*args, **kwargs)                                      
 
 class ProfileUpdate(LoginRequiredMixin,UpdateView):
