@@ -168,3 +168,6 @@ MQTT_PORT = 1883
 MQTT_KEEPALIVE = 60
 MQTT_USER = 'cs3237'
 MQTT_PASSWORD = 'public'
+
+import django_heroku
+django_heroku.settings(locals())
