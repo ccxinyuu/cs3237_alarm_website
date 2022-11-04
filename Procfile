@@ -1,1 +1,1 @@
-web gunicorn alarms.wsgi
+web: gunicorn alarms.wsgi
