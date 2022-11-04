@@ -11,3 +11,4 @@ six==1.12.0
 sqlparse==0.3.0
 django-heroku==0.3.1
 django-on-heroku==1.1.2
+paho-mqtt==1.6.1
