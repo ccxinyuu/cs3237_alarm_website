@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 from django.conf import settings
+from .models import AlarmTone
 
 
 def on_connect(client, userdata, flags, rc):
@@ -32,8 +33,13 @@ class MQTT:
         )
         self.client.loop_start()
 
-    def publish(self):
-        self.client.publish('alarm/time', payload=1111, qos=0)
+    def publish_to_time(self):
+        self.client.publish('alarm/time', payload=1, qos=0)
+    
+    def publish_to_alarm_tone(self, alarmtone):
+
+        tone_dict = {"Love Story": 0 , "Flower Dance": 1, "River Flows in You":2, "Little Star": 3}
+        self.client.publish('alarm/alarmtone', payload=tone_dict[alarmtone],qos=0)
 
 client = MQTT()
 

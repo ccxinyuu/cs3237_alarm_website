@@ -60,10 +60,15 @@ class AlarmToneChange(LoginRequiredMixin, CreateView):
     form_class = AlarmToneForm
     template_name = "changeAlarmTone.html"
     success_url = "/alarms/alarms"
+    
     def get_context_data(self, **kwargs):
         ctx = super(AlarmToneChange, self).get_context_data(**kwargs)
         ctx['title'] = 'Change alarm tone'
         return ctx
+    
+    def form_valid(self, form):
+        client.publish_to_alarm_tone(form.instance.sound)
+        return super(AlarmToneChange, self).form_valid(form)
     
 class AlarmCreate(LoginRequiredMixin,CreateView):
     login_url = '/account/login'
@@ -101,7 +106,7 @@ class AlarmDelete(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
     permission_required = 'alarm.edit_alarm'
     success_url = '/alarms/alarms'
     def get(self, *args, **kwargs):
-        return self.post(*args, **kwargs)
+        return self.post(*args, **kwargs)                                      
 
 class ProfileUpdate(LoginRequiredMixin,UpdateView):
     login_url = '/account/login'
@@ -121,5 +126,5 @@ def sendsignal(request):
     if request.method == 'POST':
         x = json.loads(request.body, object_hook=lambda d: SimpleNamespace(**d))
         print(x.signal)
-        client.publish()
+        client.publish_to_time()
         return HttpResponse({})
