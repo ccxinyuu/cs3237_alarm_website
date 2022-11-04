@@ -23,13 +23,12 @@ print(BASE_DIR)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-'''
+
 try:
     SECRET_KEY = os.environ['secret']
 except KeyError:
-    with open(f'{BASE_DIR}\\secretkey.txt') as f:
+    with open(f'{BASE_DIR}/secretkey.txt') as f:
             SECRET_KEY = f.read().strip()
-'''
             
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
