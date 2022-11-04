@@ -26,7 +26,7 @@ print(BASE_DIR)
 print(f'{BASE_DIR}\\secretkey.txt')
 
 try:
-    SECRET_KEY = os.environ['secret']
+    SECRET_KEY = "eu^=)x%21^g=om(&-6v#31ep)9q$7l*4hv(+cdpo#v4g!ki4i"
 except KeyError:
     with open(f'{BASE_DIR}\\secretkey.txt') as f:
         SECRET_KEY = f.read().strip()
