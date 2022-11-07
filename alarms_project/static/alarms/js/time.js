@@ -21,11 +21,25 @@ refreshTimes = () => {
 
 }
 
+addAlarm = () => {
+    var alarmTimes = document.getElementsByClassName(alarmTimeClass);
+    for (let i = 0; i < alarmTimes.length; i++) {
+        console.log(alarmTimes[i])
+    }
+}
+
 checkAlarm = (alarmTime, sound, popupIndex) => {
     if (moment(alarmTime).isSame(moment(), 'second')) {
         playAlarm(sound);
         sendSignal(1); 
         displayPopup(popupIndex);
+    } else {
+        var curr_time = moment().format('HH:mm:ss')
+        console.log(curr_time)
+        // displaySetAlarm();
+        if (curr_time === "01:50:00") {
+            displaySetAlarm();
+        }
     }
 }
 
@@ -47,7 +61,14 @@ stopAlarm = () => {
 displayPopup = (popupIndex) => {
     console.log(`hey ${popupIndex}`);
     $(`#modal-alarm-${popupIndex}`).modal('show');
-    $(`#modal-alarm-${popupIndex}`).on('hidden.bs.modal', (e) => stopAlarm());
+    $(`#modal-alarm-${popupIndex}`).on('hidden.bs.modal', (e) => addAlarm());
+}
+
+displaySetAlarm = () => {
+    $(`#modal-alarm-auto`).modal('show');
+    $(`#modal-alarm-auto`).on('hidden.bs.modal', (e) => {
+        console.log("dismiss")
+    });
 }
 setCurrentTime = (placeholder) => placeholder.innerHTML = moment().format("HH:mm:ss");
 formatDateDisplay = (dateDisplay) => {
