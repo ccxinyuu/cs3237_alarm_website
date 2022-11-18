@@ -35,11 +35,12 @@ checkAlarm = (alarmTime, sound, popupIndex) => {
         displayPopup(popupIndex);
     } else {
         var curr_time = moment().format('HH:mm:ss')
-        console.log(curr_time)
+        console.log(curr_time); 
+        displaySetAlarm();
         // displaySetAlarm();
-        if (curr_time === "01:50:00") {
-            displaySetAlarm();
-        }
+        //if (curr_time === "13:47:22") {
+            
+        //}
     }
 }
 
@@ -65,9 +66,10 @@ displayPopup = (popupIndex) => {
 }
 
 displaySetAlarm = () => {
+    console.log("display alarm"); 
     $(`#modal-alarm-auto`).modal('show');
     $(`#modal-alarm-auto`).on('hidden.bs.modal', (e) => {
-        console.log("dismiss")
+        console.log("dismiss"); 
     });
 }
 setCurrentTime = (placeholder) => placeholder.innerHTML = moment().format("HH:mm:ss");

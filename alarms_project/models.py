@@ -43,10 +43,10 @@ class AlarmManager(models.Manager):
             minute = num_min % 60
             
         now = datetime.datetime.now()
-        
         tzinfo = datetime.timezone(datetime.timedelta(hours=4, minutes=0))
         new_time = datetime.datetime(now.year, now.month, now.day + 1, hour, minute, tzinfo=tzinfo)
-        alarm = self.create(title="Alarm", creator=user, time=new_time)
+        print(new_time)
+        alarm = self.create(title="Alarm_Predict", creator=user, time=new_time)
         return alarm
 
 

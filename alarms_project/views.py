@@ -87,7 +87,6 @@ class HomePageView(LoginRequiredMixin, ListView):
         time_predict = datetime.time(hour=hour, minute=minute)
         time_actual = time_predict.strftime("%H:%M:%S")
         context["set_alarm_time_predict"] = Datetime(datetime=time_actual)
-        print(context["set_alarm_time_predict"]) 
         return context
 
 
